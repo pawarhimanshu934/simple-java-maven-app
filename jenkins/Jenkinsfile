@@ -1,8 +1,13 @@
 pipeline {
-    agent any
-    tools {
-        maven 'Maven 3.9.9'  // This uses the Maven installation you configured in Jenkins
-    }
+    agent {
+	docker{
+	    image 'maven:3.9.0'
+	    args '-v /root/.m2:/root/.m2'
+	}
+}
+    //tools {
+      //  maven 'Maven 3.9.9' This uses the Maven installation you configured in Jenkins
+   // }
     stages {
         stage('Build') { 
             steps {
